@@ -14,6 +14,10 @@ export const GisfsApp = () => {
     console.log([term]);
   };
 
+  const handleSearch = (query: string) => {
+    console.log({ query });
+  };
+
   return (
     <>
       {/* {header} */}
@@ -25,7 +29,7 @@ export const GisfsApp = () => {
       {/* {Search} */}
 
       {/* {searchbar} */}
-      <SearchBar placeholder="Busca lo que quieras" />
+      <SearchBar placeholder="Busca lo que quieras" onQuery={handleSearch} />
 
       {/* {Busquedas previas} */}
       <PreviousSearches
