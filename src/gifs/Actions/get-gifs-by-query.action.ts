@@ -9,7 +9,7 @@ export const getGifsbyQuery= async(query: string):Promise<Gif[]> =>{
         q:query,
         limit:10,
         lang:'es',
-        api_key:'XHPmcIkyhFqI5XhFXnZ6ruTGoIot7NAH'
+        
     }
     })
 
