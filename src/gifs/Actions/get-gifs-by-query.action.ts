@@ -1,22 +1,19 @@
-import axios from 'axios'
+//import axios from 'axios'
 import type { GiphyResponse } from '../interfaces/giphy.response'
 import type { Gif } from '../interfaces/gif.interfaces';
+import { giphyApi } from '../api/giphy.api';
 
 
 export const getGifsbyQuery= async(query: string):Promise<Gif[]> =>{
 
-    const response = await axios.get<GiphyResponse>(`https://api.giphy.com/v1/gifs/search`,{params:{
+    const response = await giphyApi<GiphyResponse>(`/search`,{params:{
         q:query,
         limit:10,
-        lang:'es',
-        
     }
     })
 
     console.log(response.data);
 
-    // fetch(`https://api.giphy.com/v1/gifs/search?api_key=XHPmcIkyhFqI5XhFXnZ6ruTGoIot7NAH&q=${query}&limit=25&offset=0&rating=pg-13&lang=es&bundle=messaging_non_clips`)
-    
     return response.data.data.map((gif) => ({ 
         id: gif.id,
         title: gif.title,

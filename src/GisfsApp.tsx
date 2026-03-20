@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { Giflist } from "./gifs/Giflist";
 import { PreviousSearches } from "./gifs/PreviousSearches";
-import { mockGifs } from "./mock-data/gifs.mock";
 import { Customheader } from "./shared/components/Customheader";
 import SearchBar from "./shared/components/SearchBar";
 import { getGifsbyQuery } from "./gifs/Actions/get-gifs-by-query.action";
+import type { Gif } from "./gifs/interfaces/gif.interfaces";
 
 export const GisfsApp = () => {
-  const [previousTerms, setPreviousTerms] = useState([
-    "Tus busquedas van aqui",
-  ]);
+  const [gifs, setgifs] = useState<Gif[]>([]);
+
+  const [previousTerms, setPreviousTerms] = useState<string[]>([]);
 
   const handleTermClicked = (term: string) => {
     console.log([term]);
@@ -33,7 +33,7 @@ export const GisfsApp = () => {
     setPreviousTerms([query, ...previousTerms].splice(0, 8));
 
     const gifs = await getGifsbyQuery(query);
-    console.log({ gifs });
+    setgifs(gifs);
   };
 
   return (
@@ -58,7 +58,7 @@ export const GisfsApp = () => {
       {/* {Gifs} */}
       {/* {Giflist} */}
 
-      <Giflist gifs={mockGifs} />
+      <Giflist gifs={gifs} />
     </>
   );
 };
