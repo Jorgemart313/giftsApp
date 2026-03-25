@@ -3,6 +3,8 @@ import { describe, expect, test } from "vitest";
 import { useCounter } from "./useCounter";
 
 describe("useCounter", () => {
+  // const { result } = renderHook(() => useCounter());
+
   test("Should initialize with default value of 5", () => {
     const { result } = renderHook(() => useCounter());
 
