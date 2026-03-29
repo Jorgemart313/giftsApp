@@ -5,10 +5,10 @@ import type { Gif } from "../interfaces/gif.interfaces";
 //const gisfCache: Record<string, Gif[]> = {};
 
 export const useGifs = () => {
-  ///////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////
   const [gifs, setGifs] = useState<Gif[]>([]);
   const [previousTerms, setPreviousTerms] = useState<string[]>([]);
-  ///////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////
   const gisfCache = useRef<Record<string, Gif[]>>({});
 
   const handleTermClicked = async (term: string) => {
@@ -20,9 +20,9 @@ export const useGifs = () => {
 
     const gifs = await getGifsbyQuery(term);
     setGifs(gifs);
+    gisfCache.current[term] = gifs;
   };
-  ///////////////////////////////////////////////////////////////////////////
-
+  /////////////////////////////////////////////
   const handleSearch = async (query: string = "") => {
     query = query.trim().toLowerCase();
 
@@ -38,14 +38,17 @@ export const useGifs = () => {
     setGifs(gifs);
 
     gisfCache.current[query] = gifs;
-    console.log(gisfCache);
+
+    //console.log(gisfCache);
   };
   ///////////////////////////////////////////////////////////////////////////
 
   return {
+    //properties
     gifs,
-    handleSearch,
     previousTerms,
+    //methods
+    handleSearch,
     handleTermClicked,
   };
 };
