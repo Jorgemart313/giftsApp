@@ -1,6 +1,5 @@
 import type { FC } from "react";
 
-import { copyGifToClipboard } from "./copyGif";
 import type { Gif } from "./interfaces/gif.interfaces";
 
 interface Props {
@@ -12,11 +11,7 @@ export const Giflist: FC<Props> = ({ gifs }) => {
     <div className="gifs-container">
       {gifs.map((gif) => (
         <div key={gif.id} className="gif-card">
-          <img
-            src={gif.url}
-            alt={gif.title}
-            onClick={() => copyGifToClipboard(gif.url)}
-          />
+          <img src={gif.url} alt={gif.title} />
           <h3>{gif.title}</h3>
           <p>
             {gif.width}x{gif.height} (1.5mb)
